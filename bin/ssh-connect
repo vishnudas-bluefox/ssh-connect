@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Resolve symlinks (e.g. ~/.local/bin/ssh-connect -> .../bin/ssh-connect).
+SOURCE="${BASH_SOURCE[0]}"
+while [ -L "$SOURCE" ]; do
+  DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ "$SOURCE" != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+
+# Dev layout: repo/bin/ssh-connect -> repo/
+# Packaged layout: /usr/bin/ssh-connect -> /usr/lib/ssh-connect/
+for ROOT in \
+  "$SCRIPT_DIR/.." \
+  "/usr/lib/ssh-connect" \
+  "/opt/homebrew/lib/ssh-connect" \
+  "/usr/local/lib/ssh-connect" \
+  "${HOME}/.linuxbrew/lib/ssh-connect" \
+  "/home/linuxbrew/.linuxbrew/lib/ssh-connect"; do
+  if [[ -d "$ROOT/ssh_connect" ]]; then
+    export PYTHONPATH="$ROOT${PYTHONPATH:+:$PYTHONPATH}"
+    break
+  fi
+done
+
+# Ignore activated virtualenvs so this CLI always uses system Python.
+exec env -u VIRTUAL_ENV -u PYTHONHOME \
+  PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin" \
+  python3 -m ssh_connect "$@"

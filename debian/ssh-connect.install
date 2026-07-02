@@ -1,0 +1,2 @@
+ssh_connect usr/lib/ssh-connect/
+bin/ssh-connect usr/bin/

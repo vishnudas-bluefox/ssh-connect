@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-deb:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build .deb
+        run: |
+          set -euo pipefail
+          PKG_VERSION="$(dpkg-parsechangelog -S Version | cut -d- -f1)"
+          PKG_RELEASE="$(dpkg-parsechangelog -S Version | cut -d- -f2)"
+          STAGING="pkg"
+          mkdir -p "${STAGING}/DEBIAN" "${STAGING}/usr/lib/ssh-connect" "${STAGING}/usr/bin"
+          cp -r ssh_connect "${STAGING}/usr/lib/ssh-connect/"
+          install -m 755 bin/ssh-connect "${STAGING}/usr/bin/ssh-connect"
+          cat > "${STAGING}/DEBIAN/control" <<EOF
+          Package: ssh-connect
+          Version: ${PKG_VERSION}-${PKG_RELEASE}
+          Section: utils
+          Priority: optional
+          Architecture: all
+          Maintainer: vishnudas <vishnudas956783@gmail.com>
+          Depends: python3
+          Homepage: https://github.com/vishnudas-bluefox/ssh-connect
+          Description: Named SSH connection manager
+           Save SSH profiles by short name and connect with one command.
+          EOF
+          DEB="ssh-connect_${PKG_VERSION}-${PKG_RELEASE}_all.deb"
+          dpkg-deb --build --root-owner-group "${STAGING}" "${DEB}"
+          ls -la "${DEB}"
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: ssh-connect_*_all.deb

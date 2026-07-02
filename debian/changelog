@@ -1,0 +1,17 @@
+ssh-connect (0.1.2-1) unstable; urgency=medium
+
+  * Fix Debian package build for GitHub releases.
+
+ -- vishnudas <vishnudas956783@gmail.com>  Thu, 02 Jul 2026 19:00:00 +0000
+
+ssh-connect (0.1.1-1) unstable; urgency=medium
+
+  * Add Debian and Homebrew packaging for public distribution.
+
+ -- vishnudas <vishnudas956783@gmail.com>  Thu, 02 Jul 2026 18:00:00 +0000
+
+ssh-connect (0.1.0-1) unstable; urgency=medium
+
+  * Initial release.
+
+ -- vishnudas <vishnudas956783@gmail.com>  Thu, 02 Jul 2026 12:00:00 +0000

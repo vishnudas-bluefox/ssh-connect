@@ -1,0 +1,17 @@
+Source: ssh-connect
+Section: utils
+Priority: optional
+Maintainer: vishnudas <vishnudas956783@gmail.com>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+Homepage: https://github.com/vishnudas-bluefox/ssh-connect
+Vcs-Browser: https://github.com/vishnudas-bluefox/ssh-connect
+Vcs-Git: https://github.com/vishnudas-bluefox/ssh-connect.git
+
+Package: ssh-connect
+Architecture: all
+Depends: ${misc:Depends}, python3
+Description: Named SSH connection manager
+ Save SSH profiles by short name and connect with one command.
+ Supports PEM keys, custom ports, and interactive or scripted profile setup.
