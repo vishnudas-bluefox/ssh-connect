@@ -8,8 +8,12 @@ fi
 
 FORMULA_URL="https://raw.githubusercontent.com/vishnudas-bluefox/ssh-connect/main/packaging/homebrew/ssh-connect.rb"
 
-# Works immediately without a separate tap repo.
-brew install "$FORMULA_URL"
+if brew tap | grep -qx "vishnudas-bluefox/tap"; then
+  brew install ssh-connect
+else
+  # Works without a prior tap; installs from the published formula URL.
+  brew install "$FORMULA_URL"
+fi
 
 echo ""
 echo "Installed ssh-connect"
