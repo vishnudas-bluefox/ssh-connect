@@ -38,15 +38,18 @@ git push -u origin main
 ### 4. Users install with
 
 ```bash
+brew install vishnudas-bluefox/tap/ssh-connect
+```
+
+Or tap once:
+
+```bash
 brew tap vishnudas-bluefox/tap
+brew trust vishnudas-bluefox/tap
 brew install ssh-connect
 ```
 
-Or in one line:
-
-```bash
-brew install vishnudas-bluefox/tap/ssh-connect
-```
+Homebrew may require `brew trust` for third-party taps. See https://docs.brew.sh/Tap-Trust
 
 ### Getting into homebrew-core
 
