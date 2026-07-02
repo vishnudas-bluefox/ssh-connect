@@ -6,14 +6,9 @@ if ! command -v brew >/dev/null 2>&1; then
   exit 1
 fi
 
-FORMULA_URL="https://raw.githubusercontent.com/vishnudas-bluefox/ssh-connect/main/packaging/homebrew/ssh-connect.rb"
-
-if brew tap | grep -qx "vishnudas-bluefox/tap"; then
-  brew install ssh-connect
-else
-  # Works without a prior tap; installs from the published formula URL.
-  brew install "$FORMULA_URL"
-fi
+brew tap vishnudas-bluefox/tap
+brew trust vishnudas-bluefox/tap
+brew install ssh-connect
 
 echo ""
 echo "Installed ssh-connect"

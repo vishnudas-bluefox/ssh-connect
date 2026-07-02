@@ -16,14 +16,17 @@ Or tap once, then install updates with `brew install ssh-connect`:
 
 ```bash
 brew tap vishnudas-bluefox/tap
+brew trust vishnudas-bluefox/tap
 brew install ssh-connect
 ```
 
-One-liner installer (no tap required):
+One-liner installer:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/vishnudas-bluefox/ssh-connect/main/scripts/install-brew.sh | bash
 ```
+
+Homebrew may require trusting third-party taps before install. See [Tap Trust](https://docs.brew.sh/Tap-Trust).
 
 ### apt (Debian / Ubuntu)
 
