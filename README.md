@@ -37,8 +37,8 @@ curl -fsSL https://raw.githubusercontent.com/vishnudas-bluefox/ssh-connect/main/
 Manual `.deb` install:
 
 ```bash
-curl -LO https://github.com/vishnudas-bluefox/ssh-connect/releases/download/v0.1.4/ssh-connect_0.1.2-1_all.deb
-sudo apt install ./ssh-connect_0.1.2-1_all.deb
+curl -LO https://github.com/vishnudas-bluefox/ssh-connect/releases/download/v0.1.0/ssh-connect_0.1.0-1_all.deb
+sudo apt install ./ssh-connect_0.1.0-1_all.deb
 ```
 
 ### Manual install
