@@ -6,6 +6,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+from ssh_connect import __version__
 from ssh_connect.store import CONFIG_FILE, Connection, add, delete, get, list_names, load_all
 
 
@@ -149,7 +150,9 @@ def build_parser() -> argparse.ArgumentParser:
         prog="ssh-connect",
         description="Manage and connect to saved SSH profiles.",
     )
-    parser.add_argument("--version", action="version", version="ssh-connect 0.1.1")
+    parser.add_argument(
+        "--version", action="version", version=f"ssh-connect {__version__}"
+    )
 
     sub = parser.add_subparsers(dest="command")
 

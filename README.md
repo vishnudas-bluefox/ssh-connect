@@ -9,19 +9,20 @@ Share these one-liners with friends:
 ### Homebrew (macOS / Linux)
 
 ```bash
-brew install https://raw.githubusercontent.com/vishnudas-bluefox/ssh-connect/main/packaging/homebrew/ssh-connect.rb
+brew install vishnudas-bluefox/tap/ssh-connect
 ```
 
-Or one-liner:
+Or tap once, then install updates with `brew install ssh-connect`:
+
+```bash
+brew tap vishnudas-bluefox/tap
+brew install ssh-connect
+```
+
+One-liner installer (no tap required):
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/vishnudas-bluefox/ssh-connect/main/scripts/install-brew.sh | bash
-```
-
-After you create the [homebrew-tap](https://github.com/vishnudas-bluefox/homebrew-tap) repo, this also works:
-
-```bash
-brew install vishnudas-bluefox/tap/ssh-connect
 ```
 
 ### apt (Debian / Ubuntu)
